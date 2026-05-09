@@ -1,16 +1,67 @@
-# React + Vite
+#  Cartão das Mães — Gerador de mensagens com IA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação web que usa inteligência artificial para criar mensagens únicas e emocionantes para o Dia das Mães. Basta preencher um formulário com informações sobre sua mãe e a IA gera um texto personalizado e cheio de carinho em segundos.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Funcionalidades
 
-## React Compiler
+- Geração de mensagens personalizadas com IA (Google Gemini) OBS: Também pode ser feito através do Claude Code, OpenAI etc... (Exige Custos para criação de uma API Key)
+- 4 estilos de mensagem: carinhoso, poético, divertido e simples
+- Animações de pétalas e confete
+- Botão para copiar a mensagem gerada
+- Interface bonita e responsiva
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+##  Tecnologias utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React + Vite
+- Node.js + Express
+- Google Gemini API
+- Tailwind CSS (via CDN)
+
+---
+
+##  Como rodar o projeto
+
+### Pré-requisitos
+- Node.js instalado
+- Chave de API do Google Gemini ([aistudio.google.com](https://aistudio.google.com))
+
+### Passo a passo
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/vitorTweaks/cartao-das-maes.git
+cd cartao-das-maes
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Crie um arquivo `.env` na raiz do projeto:
+
+GEMINI_API_KEY=sua_chave_aqui
+
+4. Em um terminal, rode o servidor:
+```bash
+node server.js
+```
+
+5. Em outro terminal, rode o frontend:
+```bash
+npm run dev
+```
+
+6. Acesse [http://localhost:5173](http://localhost:5173)
+
+---
+
+##  Entrega — Hackathon Dia das Mães
+
+Projeto desenvolvido para o Hackathon com tema **Dia das Mães**.
+
+Desenvolvido por **Vitor**
