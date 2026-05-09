@@ -84,7 +84,7 @@ Escreva uma mensagem bonita, de 3 a 4 parágrafos, no estilo "${formData.estilo}
 Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
 
     try {
-      const response = await fetch("http://localhost:3001/api/gerar", {
+      const response = await fetch("/api/gerar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
