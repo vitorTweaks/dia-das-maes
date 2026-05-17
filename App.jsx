@@ -247,7 +247,7 @@ export default function App() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-
+  // obs: cabeçalho ainda bugado (lembrete)
   async function gerarMensagem() {
     setStep("loading");
     const prompt = `Crie uma mensagem de Dia das Mães personalizada e emocionante.
