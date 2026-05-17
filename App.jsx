@@ -272,7 +272,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 100);
     } catch (err) {
-      mostrarToast("❌ Erro ao gerar mensagem. Tente novamente.", "#c62828");
+      mostrarToast("Erro ao gerar mensagem. Tente novamente.", "#c62828");
       setStep("form");
     }
   }
@@ -311,14 +311,14 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       link.href = canvas.toDataURL("image/png");
       link.click();
       setSalvando("sucesso");
-      mostrarToast("🖼️ Imagem salva!", "#1565c0");
+      mostrarToast("Imagem salva!", "#1565c0");
       setTimeout(() => setSalvando("idle"), 2500);
     } catch (err) {
       console.error("Erro ao salvar imagem:", err);
       const acoesEl = cartaoRef.current?.querySelector("[data-no-capture]");
       if (acoesEl) acoesEl.style.visibility = "visible";
       setSalvando("erro");
-      mostrarToast("❌ Erro ao salvar. Tente novamente.", "#c62828");
+      mostrarToast(" Erro ao salvar. Tente novamente.", "#c62828");
       setTimeout(() => setSalvando("idle"), 2500);
     }
   }
@@ -353,7 +353,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       <div style={{ ...styles.card, ...fadeStyle, padding: r.cardPadding, borderRadius: r.cardRadius }}>
         <div style={styles.header}>
           <div style={styles.iconCircle}>💝</div>
-          <h1 style={{ ...styles.title, fontSize: r.titleSize, ...gradienteTexto(tema.titleGradient) }}>
+          <h1 style={{ ...styles.title, fontSize: r.titleSize, color: tema.accentColor }}>
             Cartão das Mães
           </h1>
           <p style={styles.subtitle}>Crie uma mensagem única com inteligência artificial</p>
@@ -398,7 +398,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
             onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.target.style.transform = "translateY(0)"; }}
           >
-            Gerar mensagem com IA ✨
+            Gerar mensagem com IA.
           </button>
         </div>
       </div>
