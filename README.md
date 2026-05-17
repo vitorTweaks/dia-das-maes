@@ -1,67 +1,136 @@
-#  Cartão das Mães — Gerador de mensagens com IA
+#  Cartão das Mães
 
-Uma aplicação web que usa inteligência artificial para criar mensagens únicas e emocionantes para o Dia das Mães. Basta preencher um formulário com informações sobre sua mãe e a IA gera um texto personalizado e cheio de carinho em segundos.
+Uma aplicação web que usa **Inteligência Artificial** para gerar mensagens personalizadas de Dia das Mães. O usuário preenche um formulário com informações sobre a mãe e a IA cria uma mensagem emotiva e única — que pode ser copiada ou salva como imagem.
+
+ **Deploy:** [cartao-das-maes.vercel.app](https://cartao-das-maes.vercel.app)
 
 ---
 
 ##  Funcionalidades
 
-- Geração de mensagens personalizadas com IA (Google Gemini) OBS: Também pode ser feito através do Claude Code, OpenAI etc... (Exige Custos para criação de uma API Key)
-- 4 estilos de mensagem: carinhoso, poético, divertido e simples
-- Animações de pétalas e confete
-- Botão para copiar a mensagem gerada
-- Interface bonita e responsiva
+-  **Geração com IA** — mensagens personalizadas via Google Gemini 2.5 Flash
+-  **3 temas visuais** — Flores 🌸, Corações 💜 e Aquarela 🎨
+-  **Salvar como imagem** — baixa o cartão em PNG de alta resolução (2x)
+-  **Copiar mensagem** — copia o texto para a área de transferência
+-  **Responsivo** — funciona bem em mobile e desktop
+-  **Animações** — pétalas flutuantes, confete e transições suaves
 
 ---
 
-##  Tecnologias utilizadas
+##  Stack
 
-- React + Vite
-- Node.js + Express
-- Google Gemini API
-- Tailwind CSS (via CDN)
+| Camada | Tecnologia |
+|--------|-----------|
+| Frontend | React + Vite |
+| Estilo | CSS-in-JS (inline styles) |
+| IA | Google Gemini 2.5 Flash |
+| Servidor local | Node.js + Express |
+| Deploy | Vercel (serverless functions) |
+| Captura de imagem | html2canvas |
 
 ---
 
-##  Como rodar o projeto
+##  Estrutura do projeto
 
-### Pré-requisitos
-- Node.js instalado
-- Chave de API do Google Gemini ([aistudio.google.com](https://aistudio.google.com))
+```
+cartao-das-maes/
+├── api/
+│   └── gerar.js          # Serverless function da Vercel
+├── src/
+│   ├── App.jsx            # Todo o frontend React
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+├── public/
+├── .env                   # Chave da API (não commitado)
+├── .gitignore
+├── server.js              # Servidor Express para rodar local
+├── vite.config.js         # Proxy /api → localhost:3001
+├── vercel.json
+├── index.html
+└── package.json
+```
 
-### Passo a passo
+---
 
-1. Clone o repositório:
+##  Como rodar localmente
+
+### 1. Clone o repositório
+
 ```bash
 git clone https://github.com/vitorTweaks/cartao-das-maes.git
 cd cartao-das-maes
 ```
 
-2. Instale as dependências:
+### 2. Instale as dependências
+
 ```bash
 npm install
 ```
 
-3. Crie um arquivo `.env` na raiz do projeto:
+### 3. Configure a variável de ambiente
 
-GEMINI_API_KEY=sua_chave_aqui
+Crie um arquivo `.env` na raiz do projeto:
 
-4. Em um terminal, rode o servidor:
+```env
+GEMINI_API_KEY= sua chave(API key)
+```
+
+>  Obtenha sua chave gratuita em [aistudio.google.com](https://aistudio.google.com/app/apikey)
+
+### 4. Rode o projeto (dois terminais)
+
+**Terminal 1 — servidor Express (porta 3001):**
 ```bash
 node server.js
 ```
 
-5. Em outro terminal, rode o frontend:
+**Terminal 2 — Vite dev server (porta 5173):**
 ```bash
 npm run dev
 ```
 
-6. Acesse [http://localhost:5173](http://localhost:5173)
+### 5. Acesse no browser
+
+```
+http://localhost:5173
+```
 
 ---
 
-##  Entrega — Hackathon Dia das Mães
+##  Deploy na Vercel
 
-Projeto desenvolvido para o Hackathon com tema **Dia das Mães**.
+O projeto já está configurado para deploy na Vercel. A serverless function em `api/gerar.js` substitui o `server.js` em produção.
 
-Desenvolvido por **Vitor**
+### Passos
+
+1. Faça o push para o GitHub
+2. Importe o repositório na [Vercel](https://vercel.com)
+3. Adicione a variável de ambiente no painel da Vercel:
+   - **Nome:** `GEMINI_API_KEY`
+   - **Valor:** sua chave do Google AI Studio
+4. Deploy automático 
+
+---
+
+##  Como funciona
+
+```
+Usuário preenche o formulário
+        ↓
+Frontend monta um prompt personalizado
+        ↓
+POST /api/gerar → Express (local) ou Vercel Function (produção)
+        ↓
+Gemini 2.5 Flash gera a mensagem
+        ↓
+Cartão é exibido com animações
+        ↓
+Usuário copia ou salva como PNG
+```
+
+---
+
+##  Licença
+
+MIT — fique à vontade para usar, modificar e distribuir.
