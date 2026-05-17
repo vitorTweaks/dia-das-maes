@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import html2canvas from "html2canvas";
 
-// ─── Hook de responsividade ────────────────────────────────────────────────────
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 480);
   useEffect(() => {
@@ -12,8 +11,6 @@ function useIsMobile() {
   return isMobile;
 }
 
-// ─── Toast ─────────────────────────────────────────────────────────────────────
-// Substitui o alert() feio do browser por uma notificação elegante
 function Toast({ mensagem, visivel, cor }) {
   return (
     <div style={{
@@ -39,7 +36,7 @@ function Toast({ mensagem, visivel, cor }) {
   );
 }
 
-// ─── Hook do toast ─────────────────────────────────────────────────────────────
+// h t
 function useToast() {
   const [toast, setToast] = useState({ visivel: false, mensagem: "", cor: "" });
   const timerRef = useRef(null);
@@ -55,7 +52,7 @@ function useToast() {
   return { toast, mostrarToast };
 }
 
-// ─── Temas ─────────────────────────────────────────────────────────────────────
+// ttemas 01
 const TEMAS = {
   flores: {
     nome: "Flores",
@@ -119,7 +116,6 @@ const TEMAS = {
   },
 };
 
-// ─── Helper gradiente de texto ─────────────────────────────────────────────────
 function gradienteTexto(gradient) {
   return {
     background: gradient,
@@ -131,7 +127,7 @@ function gradienteTexto(gradient) {
   };
 }
 
-// ─── Confetti ──────────────────────────────────────────────────────────────────
+// fe
 function Confetti({ active, cores }) {
   const [pieces, setPieces] = useState([]);
   useEffect(() => {
@@ -162,7 +158,7 @@ function Confetti({ active, cores }) {
   );
 }
 
-// ─── Pétalas ───────────────────────────────────────────────────────────────────
+// flores
 function Petals({ emojis }) {
   const petalData = useMemo(() =>
     emojis.map((emoji, i) => ({
@@ -189,7 +185,7 @@ function Petals({ emojis }) {
   );
 }
 
-// ─── Seletor de tema ───────────────────────────────────────────────────────────
+// temas 02
 function SeletorTema({ temaSelecionado, onChange }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
@@ -223,7 +219,7 @@ function SeletorTema({ temaSelecionado, onChange }) {
   );
 }
 
-// ─── App principal ─────────────────────────────────────────────────────────────
+// main
 export default function App() {
   const isMobile = useIsMobile();
   const { toast, mostrarToast } = useToast();
@@ -251,7 +247,7 @@ export default function App() {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
-
+  // obs: cabeçalho ainda bugado (lembrete)
   async function gerarMensagem() {
     setStep("loading");
     const prompt = `Crie uma mensagem de Dia das Mães personalizada e emocionante.
@@ -276,19 +272,19 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 100);
     } catch (err) {
-      mostrarToast("❌ Erro ao gerar mensagem. Tente novamente.", "#c62828");
+      mostrarToast("Erro ao gerar mensagem. Tente novamente.", "#c62828");
       setStep("form");
     }
   }
 
-  // Copiar mensagem — agora com toast no lugar do alert()
+  // copiar msg
   function copiarMensagem() {
     navigator.clipboard.writeText(mensagem)
       .then(() => mostrarToast("✅ Mensagem copiada!", "#2e7d32"))
       .catch(() => mostrarToast("❌ Não foi possível copiar.", "#c62828"));
   }
 
-  // Enviar via WhatsApp
+  // enviar no wpp
   function enviarWhatsApp() {
     const texto = encodeURIComponent(mensagem);
     window.open(`https://wa.me/?text=${texto}`, "_blank");
@@ -315,14 +311,14 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       link.href = canvas.toDataURL("image/png");
       link.click();
       setSalvando("sucesso");
-      mostrarToast("🖼️ Imagem salva!", "#1565c0");
+      mostrarToast("Imagem salva!", "#1565c0");
       setTimeout(() => setSalvando("idle"), 2500);
     } catch (err) {
       console.error("Erro ao salvar imagem:", err);
       const acoesEl = cartaoRef.current?.querySelector("[data-no-capture]");
       if (acoesEl) acoesEl.style.visibility = "visible";
       setSalvando("erro");
-      mostrarToast("❌ Erro ao salvar. Tente novamente.", "#c62828");
+      mostrarToast(" Erro ao salvar. Tente novamente.", "#c62828");
       setTimeout(() => setSalvando("idle"), 2500);
     }
   }
@@ -348,7 +344,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
     btnWidth: isMobile ? "100%" : undefined,
   };
 
-  // ── Tela do formulário ───────────────────────────────────────────────────────
+  // formulario || preenchimento 
   if (step === "form") return (
     <div style={{ ...styles.page, background: tema.pageBg, alignItems: r.pageAlign, padding: r.pagePadding }}>
       <Petals emojis={tema.petals} />
@@ -357,7 +353,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
       <div style={{ ...styles.card, ...fadeStyle, padding: r.cardPadding, borderRadius: r.cardRadius }}>
         <div style={styles.header}>
           <div style={styles.iconCircle}>💝</div>
-          <h1 style={{ ...styles.title, fontSize: r.titleSize, ...gradienteTexto(tema.titleGradient) }}>
+          <h1 style={{ ...styles.title, fontSize: r.titleSize, color: tema.accentColor }}>
             Cartão das Mães
           </h1>
           <p style={styles.subtitle}>Crie uma mensagem única com inteligência artificial</p>
@@ -402,14 +398,14 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
             onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; }}
             onMouseLeave={e => { e.target.style.transform = "translateY(0)"; }}
           >
-            Gerar mensagem com IA ✨
+            Gerar mensagem com IA.
           </button>
         </div>
       </div>
     </div>
   );
 
-  // ── Tela de loading ──────────────────────────────────────────────────────────
+  // carregamento (sistema)
   if (step === "loading") return (
     <div style={{ ...styles.page, background: tema.pageBg }}>
       <Petals emojis={tema.petals} />
@@ -426,7 +422,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
     </div>
   );
 
-  // ── Tela do cartão ───────────────────────────────────────────────────────────
+  // cartão
   return (
     <div style={{ ...styles.page, background: tema.pageBg, alignItems: r.pageAlign, padding: r.pagePadding }}>
       <Petals emojis={tema.petals} />
@@ -482,7 +478,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
           </p>
         </div>
 
-        {/* Botões — data-no-capture esconde da foto */}
+        {/* Botões */}
         <div data-no-capture style={{ ...styles.actions, flexDirection: r.actionsDirection }}>
 
           <button
@@ -492,7 +488,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
             ↺ Gerar outro
           </button>
 
-          {/* Copiar — toast verde no lugar do alert */}
+          {/* Copiar — alert verde(modificaçoes) */}
           <button
             onClick={copiarMensagem}
             style={{ ...styles.btnPrimary, background: tema.btnGradient, boxShadow: tema.btnShadow, flex: r.btnFlex, width: r.btnWidth }}
@@ -500,7 +496,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
             📋 Copiar
           </button>
 
-          {/* WhatsApp — verde fixo, abre wa.me */}
+          {/* WhatsApp — verde fixo, abre whtsp */}
           <button
             onClick={enviarWhatsApp}
             style={{ ...styles.btnWhatsapp, flex: r.btnFlex, width: r.btnWidth }}
@@ -508,7 +504,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
             <span style={{ fontSize: "1rem" }}>💬</span> WhatsApp
           </button>
 
-          {/* Salvar imagem */}
+          {/* Salvar imagm */}
           <button
             onClick={salvarComoImagem}
             disabled={salvando === "salvando"}
@@ -534,7 +530,7 @@ Não use asteriscos nem formatação markdown. Apenas texto puro e emotivo.`;
   );
 }
 
-// ─── Estilos base ──────────────────────────────────────────────────────────────
+// base
 const styles = {
   page: { minHeight: "100vh", display: "flex", justifyContent: "center", fontFamily: "'Inter', sans-serif", position: "relative", overflow: "hidden" },
   card: { background: "white", boxShadow: "0 20px 60px rgba(0,0,0,0.1)", width: "100%", maxWidth: "460px", position: "relative", zIndex: 1 },
