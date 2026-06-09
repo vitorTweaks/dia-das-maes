@@ -2,7 +2,7 @@
 
 Uma aplicação web que usa **Inteligência Artificial** para gerar mensagens personalizadas de Dia das Mães. O usuário preenche um formulário com informações sobre a mãe e a IA cria uma mensagem emotiva e única — que pode ser copiada ou salva como imagem.
 
- **Deploy:** [cartao-das-maes.vercel.app](https://cartao-das-maes.vercel.app)
+ **Deploy:** [cartao-das-maes.vercel.app](https://dia-das-maes-delta.vercel.app/)
 
 ---
 
